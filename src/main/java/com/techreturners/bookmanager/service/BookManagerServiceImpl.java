@@ -27,6 +27,20 @@ public class BookManagerServiceImpl implements BookManagerService {
     }
 
     @Override
+    public Boolean deleteBook(Long id) {
+        Book book;
+
+        try {
+            book = bookManagerRepository.findById(id).get();
+        } catch (Exception e) {
+            return false;
+        }
+
+        bookManagerRepository.delete(book);
+        return true;
+    }
+
+    @Override
     public Book getBookById(Long id) {
         return bookManagerRepository.findById(id).get();
     }
